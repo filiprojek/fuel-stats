@@ -25,10 +25,23 @@ require_once models . 'User.php';
 $router = new Router();
 $router->add('/', 'HomeController@index');
 $router->add('/home', 'HomeController@home');
-$router->add('/dashboard', 'HomeController@dashboard', ['RequireAuth']);
 
 // auth routes
-$router->add('/auth/signin', 'AuthController@signin');
-$router->add('/auth/signup', 'AuthController@signup');
-$router->add('/auth/logout', 'AuthController@logout');
+$router->group('/auth', [], function ($router) {
+    $router->add('/signin', 'AuthController@signin');
+    $router->add('/signup', 'AuthController@signup');
+    $router->add('/logout', 'AuthController@logout');
+});
+
+// dashboard route
+$router->add('/dashboard', 'HomeController@dashboard', ['RequireAuth']);
+
+// habits routes
+$router->group('/habits', ['RequireAuth'], function ($router) {
+    $router->add('', 'HabitController@index');
+    $router->add('/create', 'HabitController@create');
+    $router->add('/edit/{id}', 'HabitController@edit');
+    $router->add('/delete/{id}', 'HabitController@delete');
+});
+
 $router->dispatch();

@@ -3,6 +3,8 @@
 class Router {
     private $routes = [];
     private $middlewares = [];
+    private $groupPrefix = '';
+    private $groupMiddlewares = [];
 
     /**
      * Add a route with a specific action and optional middleware
@@ -12,7 +14,33 @@ class Router {
      * @param array $middlewares Optional middlewares for this route
      */
     public function add($route, $action, $middlewares = []) {
+        $route = $this->groupPrefix . $route;
+        $middlewares = array_merge($this->groupMiddlewares, $middlewares);
         $this->routes[$route] = ['action' => $action, 'middlewares' => $middlewares];
+    }
+
+    /**
+     * Define a group of routes with shared prefix and middlewares
+     * 
+     * @param string $prefix
+     * @param array $middlewares
+     * @param callable $callback
+     */
+    public function group($prefix, $middlewares, $callback) {
+        // Save the current state
+        $previousPrefix = $this->groupPrefix;
+        $previousMiddlewares = $this->groupMiddlewares;
+
+        // Set new group prefix and middlewares
+        $this->groupPrefix = $previousPrefix . $prefix;
+        $this->groupMiddlewares = array_merge($this->groupMiddlewares, $middlewares);
+
+        // Execute the callback to define routes in the group
+        $callback($this);
+
+        // Restore the previous state
+        $this->groupPrefix = $previousPrefix;
+        $this->groupMiddlewares = $previousMiddlewares;
     }
 
     /**
@@ -21,6 +49,11 @@ class Router {
     public function dispatch() {
         $uri = $_SERVER['REQUEST_URI'];
         $uri = parse_url($uri, PHP_URL_PATH);
+
+        // Normalize the URI by removing trailing slash (except for root "/")
+        if ($uri !== '/' && substr($uri, -1) === '/') {
+            $uri = rtrim($uri, '/');
+        }
 
         if (array_key_exists($uri, $this->routes)) {
             $route = $this->routes[$uri];
