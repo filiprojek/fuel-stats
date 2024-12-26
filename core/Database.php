@@ -85,7 +85,22 @@ class Database {
             die("Failed to create progress table: " . $this->connection->error);
         }
 
-        // Add more table creation logic as needed
+        
+        // Create habits table
+        $habitsTableQuery = "CREATE TABLE IF NOT EXISTS habits (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            user_id INT NOT NULL,
+            title VARCHAR(100) NOT NULL,
+            frequency ENUM('Daily', 'Weekly', 'Custom') NOT NULL,
+            custom_frequency VARCHAR(255) DEFAULT NULL, -- Store crontab-like string
+            reward_points INT DEFAULT 1,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+        ) ENGINE=InnoDB;";
+
+        if (!$this->connection->query($habitsTableQuery)) {
+            die("Failed to create habits table: " . $this->connection->error);
+        }
     }
 
     /**

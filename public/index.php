@@ -20,6 +20,7 @@ require_once '../core/Database.php';
 require_once '../core/middlewares/RequireAuth.php';
 
 require_once models . 'User.php';
+require_once models . 'Habit.php';
 
 // Initialize router
 $router = new Router();

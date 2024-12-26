@@ -42,7 +42,7 @@ class User {
     public function login($email, $password) {
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-        $stmt = $this->db->prepare("SELECT username, password FROM users WHERE email = ?");
+        $stmt = $this->db->prepare("SELECT id, username, password FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -52,6 +52,7 @@ class User {
             $user = $result->fetch_assoc();
             if (password_verify($password, $user['password'])) {
                 $_SESSION['user'] = [
+                    'id' => $user['id'],
                     'username' => $user['username'],
                     'email' => $email,
                 ];
