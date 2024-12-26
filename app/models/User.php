@@ -27,7 +27,6 @@ class User {
             return "Email is already registered";
         }
 
-        // Hash the password
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
         $stmt = $this->db->prepare("INSERT INTO users (username, email, password, points, created_at) VALUES (?, ?, ?, 0, NOW())");
@@ -39,7 +38,27 @@ class User {
             return "Error: " . $stmt->error;
         }
     }
+
+    public function login($email, $password) {
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+        $stmt = $this->db->prepare("SELECT username, password FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        if ($result->num_rows === 1) {
+            $user = $result->fetch_assoc();
+            if (password_verify($password, $user['password'])) {
+                $_SESSION['user'] = [
+                    'username' => $user['username'],
+                    'email' => $email,
+                ];
+                return true;
+            } 
+        } 
+
+        return "Invalid email or password.";
+    }
 }
-
-?>
-

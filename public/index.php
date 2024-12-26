@@ -1,5 +1,6 @@
 <?php
 // Show errors and warnings
+session_start();
 ini_set('display_errors', '1');
 ini_set('log_errors', '1');
 ini_set('error_log', '../storage/logs/error_log.log');
@@ -16,6 +17,7 @@ require_once '../core/Router.php';
 require_once '../core/View.php';
 require_once '../core/Controller.php';
 require_once '../core/Database.php';
+require_once '../core/middlewares/RequireAuth.php';
 
 require_once models . 'User.php';
 
@@ -23,8 +25,10 @@ require_once models . 'User.php';
 $router = new Router();
 $router->add('/', 'HomeController@index');
 $router->add('/home', 'HomeController@home');
+$router->add('/dashboard', 'HomeController@dashboard', ['RequireAuth']);
 
 // auth routes
 $router->add('/auth/signin', 'AuthController@signin');
 $router->add('/auth/signup', 'AuthController@signup');
+$router->add('/auth/logout', 'AuthController@logout');
 $router->dispatch();

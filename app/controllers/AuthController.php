@@ -6,6 +6,19 @@ class AuthController extends Controller  {
             $email = $_POST['email'] ?? '';
             $password = $_POST['password'] ?? '';
 
+            $validator = new Validator();
+            $validator->required('email', $email);
+            $validator->email('email', $email);
+            $validator->required('password', $password);
+
+            if (!$validator->passes()) {
+                $this->view('auth/signup', [
+                    'error' => 'Please correct the errors below.',
+                    'validationErrors' => $validator->errors() ?: [],
+                ]);
+                return;
+            }
+
             $user = new User();
             $result = $user->login($email, $password);
 
@@ -26,9 +39,7 @@ class AuthController extends Controller  {
             $password = $_POST['password'] ?? '';
             $password2 = $_POST['password-2'] ?? '';
 
-            // Perform validations
             $validator = new Validator();
-
             $validator->required('username', $username);
             $validator->email('email', $email);
             $validator->required('password', $password);
@@ -64,5 +75,11 @@ class AuthController extends Controller  {
                 'validationErrors' => [],
             ]);
         }
+    }
+
+    public function logout() {
+        session_unset(); 
+        session_destroy();
+        $this->redirect('/auth/signin');
     }
 }

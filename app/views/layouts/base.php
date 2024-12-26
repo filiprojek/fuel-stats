@@ -8,6 +8,7 @@
     <header>
       <a href="/auth/signin">Log In</a>
       <a href="/auth/signup">Sign Up</a>
+      <a href="/auth/logout">Log Out</a>
     </header>
     <section class="content">
       <?= $content ?>

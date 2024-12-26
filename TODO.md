@@ -2,7 +2,7 @@
 
 ## Auth and User stuff
 - [x] signup
-- [ ] signin
+- [x] signin
 - [ ] edit user data - change password, mail...
 
 ## Core of the app
