@@ -1,83 +1,43 @@
 # Habit Tracker
 
-Aplikace pro sledování návyků a motivaci k dosažení osobních cílů.
+An app for tracking habits and motivation to achieve personal goals
 
-## Funkce
-- **Uživatelská autentizace:** Možnost registrace a přihlášení.
-- **Správa návyků:** Přidávání, úprava a mazání návyků.
-- **Denní kontrola:** Označování splněných návyků každý den.
-- **Gamifikace:** Získávání bodů za splněné návyky, odemykání odznaků a postup na vyšší úrovně.
-- **Přehled:** Statistiky o pokroku a dosažených úspěších.
-- **(Volitelné) Žebříček:** Srovnání bodů mezi uživateli.
-
-## Použité technologie
+## Used technologies
+- **Frontend:** HTML, CSS, JavaScript
 - **Backend:** PHP (OOP)
-- **Databáze:** MySQL
-- **Frontend:** HTML, CSS, JavaScript (Bootstrap pro responzivní design)
+- **Database:** MariaDB
 
-## Instalace
-1. Klonujte tento repozitář:
-   ```bash
-   git clone https://github.com/vase-repozitar/habit-tracker.git
-   ```
-2. Importujte databázovou strukturu ze souboru `database.sql` do MySQL.
-3. Nakonfigurujte připojení k databázi v souboru `config.php`:
-   ```php
-   define('DB_HOST', 'localhost');
-   define('DB_USER', 'uzivatel');
-   define('DB_PASS', 'heslo');
-   define('DB_NAME', 'habit_tracker');
-   ```
-4. Spusťte lokální server (např. pomocí XAMPP nebo WAMP) a přistupte k aplikaci přes prohlížeč.
+## How to build
+1. Clone the repo
+```bash
+   git clone https://git.filiprojek.cz/fr/habit-tracker.git
+```
 
-## Struktura databáze
+2. Create `config/environment.php`
+- It should have following structure:
+```php
+<?php
 
-### Tabulka `users` (uživatelé)
-| Sloupec       | Typ         | Popis                      |
-|---------------|-------------|----------------------------|
-| id            | INT         | Primární klíč             |
-| username      | VARCHAR(50) | Uživatelské jméno          |
-| email         | VARCHAR(100)| Email                     |
-| password      | VARCHAR(255)| Heslo (hashované)         |
-| points        | INT         | Celkový počet bodů        |
-| created_at    | TIMESTAMP   | Datum registrace          |
+define('DB_HOST', 'your db host');
+define('DB_USER', 'your db username'); 
+define('DB_PASS', 'your db password');
+define('DB_NAME', 'your db name'); 
+```
+- For the database, you can use included `docker-compose.yaml` which have both MariaDB and PhpMyAdmin
 
-### Tabulka `habits` (návyků)
-| Sloupec       | Typ         | Popis                      |
-|---------------|-------------|----------------------------|
-| id            | INT         | Primární klíč             |
-| user_id       | INT         | ID uživatele (cizí klíč)   |
-| title         | VARCHAR(100)| Název návyku              |
-| frequency     | VARCHAR(50) | Frekvence (denní/týdenní) |
-| reward_points | INT         | Počet bodů za splnění     |
-| created_at    | TIMESTAMP   | Datum vytvoření           |
+3. Start an local web server
+- You can use php's integrated server by running this:
+```bash
+php -S localhost:8000
+```
+- You can use any host and any port you want.
 
-### Tabulka `progress` (pokrok)
-| Sloupec       | Typ         | Popis                      |
-|---------------|-------------|----------------------------|
-| id            | INT         | Primární klíč             |
-| user_id       | INT         | ID uživatele (cizí klíč)   |
-| habit_id      | INT         | ID návyku (cizí klíč)      |
-| date          | DATE        | Datum splnění             |
-| status        | ENUM        | Stav (např. 'Done')       |
-
-### Tabulka `achievements` (odznaky)
-| Sloupec       | Typ         | Popis                      |
-|---------------|-------------|----------------------------|
-| id            | INT         | Primární klíč             |
-| user_id       | INT         | ID uživatele (cizí klíč)   |
-| achievement   | VARCHAR(100)| Název odznaku             |
-| unlocked_at   | TIMESTAMP   | Datum odemknutí           |
-
-## Použití
-1. Zaregistrujte se a přihlaste do aplikace.
-2. Přidejte své návyky pomocí intuitivního rozhraní.
-3. Každý den označte splněné návyky a sledujte svůj pokrok.
-4. Sbírejte body a odemykejte odznaky za svou vytrvalost!
-
-## Autor
-Tento projekt byl vytvořen jako součást školního zadání.
+## Usage
+1. Register and Login to the app.
+2. Add your habits.
+3. Mark your habits when you're done doing them.
+4. Earn point and unlock achievements by completing you're habits!
 
 ## Licence
-Tento projekt je licencován pod GNU GENERAL PUBLIC LICENSE verze 3. Více informací v souboru `LICENSE`. 
+This project is licensed under GPL3.0 and later. More information is availabe in `LICENSE` file.
 
