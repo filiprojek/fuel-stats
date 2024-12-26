@@ -1,0 +1,62 @@
+.signin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+}
+
+body {
+  background-color: var(--clr-secondary);
+}
+
+.signin .header-form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.signin .header-form img {
+  height: 5rem;
+  margin-bottom: 2rem;
+}
+
+.signin form {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: var(--clr-tertiary);
+  gap: .5rem;
+  border-radius: var(--border-radious);
+  border: var(--borderWidth-thin) solid var(--clr-border);
+}
+
+.signin form input {
+  background-color: var(--clr-secondary);
+  caret-color: white;
+  color: white;
+  padding: .3rem;
+  border-radius: var(--border-radious);
+  border: var(--borderWidth-thin) solid var(--clr-border);
+  width: 15rem;
+}
+
+.signin form input[type="submit"] {
+  background-color: var(--clr-green);
+  color: white;
+}
+
+.signin .error {
+  width: 17rem;
+  padding: 1rem;
+  background-color: var(--clr-danger-muted);
+  border-radius: var(--border-radious);
+  border: var(--borderWidth-thin) solid var(--clr-border-danger);
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.signin small.error {
+  width: 15rem;
+}

@@ -1,4 +1,10 @@
+<link rel="stylesheet" href="/css/login.css">
 <section class="signin">
+    <div class="header-form">
+        <img src="/img/logo.jpg" alt="Habit Tracker Logo">
+        <h1>Sign in to Habit Tracker</h1>
+    </div>
+
     <?php if ($this->get('error')): ?>
         <div class="error"><?= $this->get('error') ?></div>
     <?php endif; ?>

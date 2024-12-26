@@ -60,6 +60,6 @@ class User {
             } 
         } 
 
-        return "Invalid email or password.";
+        return "Incorrect username or password.";
     }
 }

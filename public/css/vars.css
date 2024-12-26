@@ -1,0 +1,13 @@
+:root {
+  --container-size: 5vw;
+  --clr-primary: #010409;
+  --clr-secondary: #0d1117;
+  --clr-tertiary: #151b23;
+  --clr-green: #238636;
+  --clr-danger-muted: #f851491a;
+
+  --border-radious: 5px;
+  --borderWidth-thin: max(1px, 0.0625rem);
+  --clr-border: #3d444db3;
+  --clr-border-danger: #f8514966;
+}
