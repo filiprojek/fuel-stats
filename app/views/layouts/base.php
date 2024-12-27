@@ -17,14 +17,14 @@
     <header>
       <div id="hd-left">
         <a href="/"><img src="/img/logo.jpg" alt="home"></a>
-        <a href="/"><?= $data['title'] ?></a>
+        <label><?= $data['title'] ?></label>
       </div>
       <div id="hd-right">
         <?php if (!isset($_SESSION['user'])): ?>
         <a href="/auth/signin">Log In</a>
         <a href="/auth/signup">Sign Up</a>
         <?php else: ?>
-        <a href="/auth/logout">Log Out</a>
+        <a href="/auth/logout">Sign out</a>
         <?php endif; ?>
       </div>
     </header>
