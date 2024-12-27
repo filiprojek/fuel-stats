@@ -24,7 +24,7 @@ require_once models . 'Habit.php';
 
 // Initialize router
 $router = new Router();
-if(!$_SESSION['user']) {
+if(!isset($_SESSION['user'])) {
     $router->add('/', 'HomeController@index');
 } else {
     $router->add('/', 'DashboardController@reroute', ['RequireAuth']);
