@@ -16,6 +16,7 @@ docker-compose up
 ```
 
 The app should be available at http://localhost:8000
+
 PhpMyAdmin should be available at http://localhost:8080
 
 ### Build manually
