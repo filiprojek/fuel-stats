@@ -1,0 +1,26 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  width: 100vw;
+  height: 3rem;
+  background: var(--clr-secondary);
+  border-radius: var(--border-radious);
+  border-bottom: var(--borderWidth-thin) solid var(--clr-border);
+}
+
+#hd-left,
+#hd-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+header a img {
+  height: 2rem;
+}
+
+header a {
+  text-decoration: none;
+}

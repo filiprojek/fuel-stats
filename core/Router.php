@@ -78,7 +78,7 @@ class Router {
         } else {
             http_response_code(404);
             $view = new View();
-            $view->render('errors/404');
+            $view->render('errors/404', [], 'noheader');
         }
     }
 }

@@ -25,10 +25,10 @@ class AuthController extends Controller  {
             if($result === true) {
                 $this->redirect('/dashboard');
             } else {
-                $this->view('auth/signin', ['error' => $result]);
+                $this->view('auth/signin', ['error' => $result], 'noheader');
             }
         } else {
-            $this->view('auth/signin', ['title' => 'Log In']);
+            $this->view('auth/signin', ['title' => 'Log In'], 'noheader');
         }
     }
 
@@ -54,7 +54,7 @@ class AuthController extends Controller  {
                 $this->view('auth/signup', [
                     'error' => 'Please correct the errors below.',
                     'validationErrors' => $validator->errors() ?: [],
-                ]);
+                ], 'noheader');
                 return;
             }
 
@@ -67,13 +67,13 @@ class AuthController extends Controller  {
                 $this->view('auth/signup', [
                     'error' => $result,
                     'validationErrors' => [],
-                ]);
+                ], 'noheader');
             }
         } else {
             $this->view('auth/signup', [
                 'title' => 'Register',
                 'validationErrors' => [],
-            ]);
+            ], 'noheader');
         }
     }
 

@@ -37,4 +37,9 @@
 
         <input type="submit" value="Sign Up">
     </form>
+
+    <div class="bordered">
+        <p>Already have an account?</p>
+        <a href="/auth/signin">Sign in</a>
+    </div>
 </section>

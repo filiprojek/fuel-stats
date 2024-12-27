@@ -16,8 +16,8 @@ class Controller {
      * @param string $viewName
      * @param array $data
      */
-    public function view($viewName, $data = []) {
+    public function view($viewName, $data = [], $layout = "base") {
         $view = new View();
-        $view->render($viewName, $data);
+        $view->render($viewName, $data, $layout);
     }
 }

@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100vw;
 }
 
 body {
@@ -58,4 +57,22 @@ select {
 
 .form small.error {
   width: 15rem;
+}
+
+.form .bordered {
+  border-radius: var(--border-radious);
+  border: var(--borderWidth-thin) solid var(--clr-border);
+  width: 17rem;
+  padding: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.form .bordered a {
+  text-decoration: none;
+  color: var(--clr-link-blue);
+}
+
+.form .bordered a:hover {
+  text-decoration: underline;
 }

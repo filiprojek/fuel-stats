@@ -25,4 +25,9 @@
 
         <input type="submit" value="Sign In">
     </form>
+
+    <div class="bordered">
+        <p>New to Habit Tracker?</p>
+        <a href="/auth/signup">Create an account</a>
+    </div>
 </section>
