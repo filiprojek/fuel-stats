@@ -1,7 +1,11 @@
 <!doctype html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Filip Rojek | http://filiprojek.cz">
+    <meta name="email" content="webmaster(@)fofrweb.com">
+    <meta name="copyright" content="(c) filiprojek.cz">
     <title>Habit Tracker | <?= $data['title'] ?></title>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/global.css">
