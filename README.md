@@ -8,6 +8,17 @@ An app for tracking habits and motivation to achieve personal goals
 - **Database:** MariaDB
 
 ## How to build
+
+### Build using docker
+Run the container using docker-compose
+```bash
+docker-compose up
+```
+
+The app should be available at http://localhost:8000
+PhpMyAdmin should be available at http://localhost:8080
+
+### Build manually
 1. Clone the repo
 ```bash
    git clone https://git.filiprojek.cz/fr/habit-tracker.git
