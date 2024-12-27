@@ -1,0 +1,22 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  align-items: center;
+}
+
+.card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.card {
+  background-color: var(--clr-secondary);
+  border-radius: var(--border-radious);
+  border: var(--borderWidth-thin) solid var(--clr-border);
+  min-width: 17rem;
+  padding: 1rem;
+}

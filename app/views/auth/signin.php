@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="/css/login.css">
-<section class="signin">
+<link rel="stylesheet" href="/css/form.css">
+<section class="form signin">
     <div class="header-form">
         <img src="/img/logo.jpg" alt="Habit Tracker Logo">
         <h1>Sign in to Habit Tracker</h1>

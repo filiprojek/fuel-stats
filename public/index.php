@@ -24,8 +24,11 @@ require_once models . 'Habit.php';
 
 // Initialize router
 $router = new Router();
-$router->add('/', 'HomeController@index');
-$router->add('/home', 'HomeController@home');
+if(!$_SESSION['user']) {
+    $router->add('/', 'HomeController@index');
+} else {
+    $router->add('/', 'DashboardController@reroute', ['RequireAuth']);
+}
 
 // auth routes
 $router->group('/auth', [], function ($router) {
@@ -35,7 +38,7 @@ $router->group('/auth', [], function ($router) {
 });
 
 // dashboard route
-$router->add('/dashboard', 'HomeController@dashboard', ['RequireAuth']);
+$router->add('/dashboard', 'DashboardController@index', ['RequireAuth']);
 
 // habits routes
 $router->group('/habits', ['RequireAuth'], function ($router) {

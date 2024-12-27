@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/css/vars.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
   </head>
   <body>
     <header>

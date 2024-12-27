@@ -3,18 +3,30 @@
 body {
   font-family: "Open Sans", serif;
   background-color: var(--clr-primary);
+  color: white;
+  font-size: 14px;
 }
 
-a,
-p,
-label,
-h1 {
+a {
   color: white;
 }
 
-a,
-p,
-label,
-div {
-  font-size: 14px;
+h1 {
+  margin-top: .5rem;
+  margin-bottom: 1rem;
+}
+
+.btn-primary,
+.btn-danger {
+  background-color: var(--clr-green);
+  padding: .5rem;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: var(--border-radious);
+  border: var(--borderWidth-thin) solid var(--clr-border);
+}
+
+.btn-danger {
+  background-color: var(--clr-danger-muted) !important;
+  border: var(--borderWidth-thin) solid var(--clr-border-danger);
 }

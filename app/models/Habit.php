@@ -29,4 +29,18 @@ class Habit {
             return false;
         }
     }
+
+    public function getHabitsByUser($userId) {
+        $stmt = $this->db->prepare("SELECT id, title, frequency, custom_frequency, reward_points, created_at FROM habits WHERE user_id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $habits = [];
+        while ($row = $result->fetch_assoc()) {
+            $habits[] = $row;
+        }
+        
+        return $habits;
+    }
 }

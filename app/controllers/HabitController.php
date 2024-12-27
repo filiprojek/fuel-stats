@@ -2,7 +2,9 @@
 
 class HabitController extends Controller {
     public function index() {
-        // Display the list of habits (to be implemented later)
+        $habit = new Habit();
+        $habits = $habit->getHabitsByUser($_SESSION['user']['id']);
+        $this->view('habits/index', ['title' => 'Habits', 'habits' => $habits]);
     }
 
     public function create() {
@@ -17,15 +19,12 @@ class HabitController extends Controller {
             }
 
             if ($frequency === 'Custom') {
-                var_dump($_POST);
                 $daysOfWeek = $_POST['days_of_week'] ?? [];
                 $daysOfMonth = $_POST['days_of_month'] ?? '*';
                 $months = $_POST['months'] ?? '*';
 
                 // Combine into crontab-like string
                 $customFrequency = implode(',', $daysOfWeek) . " $daysOfMonth $months";
-                var_dump($customFrequency);
-
             }
 
             $habit = new Habit();
@@ -38,7 +37,7 @@ class HabitController extends Controller {
             ]);
 
             if ($result) {
-                //$this->redirect('/habits');
+                $this->redirect('/habits');
             } else {
                 $this->view('habits/create', ['error' => 'Failed to create habit.']);
             }

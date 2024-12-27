@@ -6,6 +6,13 @@
 - [ ] edit user data - change password, mail...
 
 ## Core of the app
-- [ ] Habits list
+- [ ] header and navbar
+- [ ] dashboard
+  - [x] css
+  - [ ] its just plain
+  - [ ] graphs
+- [x] Habits list
+  - [ ] css
 - [ ] Habits create
+  - [ ] validate cron input
 - [ ] Habits track

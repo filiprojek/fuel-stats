@@ -1,3 +1,44 @@
-<h1>Welcome <?= $_SESSION['user']['username']?>!</h1>
+<link rel="stylesheet" href="/css/dashboard.css">
 
-<a href="/habits/create">Create new Habit</a>
+<section class="dashboard">
+    <h1>Welcome, <?= htmlspecialchars($_SESSION['user']['username']) ?>!</h1>
+    <a href="/habits/create" class="btn-primary">Create new habit!</a>
+    <div class="card-wrapper">
+        <section class="card upcoming">
+            <h2>Upcoming</h2>
+            <div class="habit">
+                <b>Habit Title</b>
+                <p>Frequency</p>
+                <p>Reward points</p>
+            </div>
+        </section>
+
+        <section class="card recent">
+            <h2>Recent</h2>
+            <div class="habit">
+                <b>Habit Title</b>
+                <p>Frequency</p>
+                <p>Reward points</p>
+            </div>
+        </section>
+
+        <section class="card missed">
+            <h2>Missed</h2>
+            <div class="habit">
+                <b>Habit Title</b>
+                <p>Frequency</p>
+                <p>Reward points</p>
+            </div>
+        </section>
+
+        <section class="card history-graph">
+            <h2>Graph of History</h2>
+        </section>
+
+        <section class="card streak">
+            <h2>Streak</h2>
+            <p>You're current streak is 123 days</p>
+            <p>Good job!</p>
+        </section>
+    </div>
+</section>
