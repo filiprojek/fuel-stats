@@ -10,10 +10,10 @@
     <?php endif; ?>
 
     <form method="POST" action="/habits/create">
-        <label for="name">Habit Name:</label>
+        <label for="name">Habit Name</label>
         <input type="text" name="name" id="name" required value="<?= htmlspecialchars($_POST['name'] ?? '') ?>">
 
-        <label for="frequency">Frequency:</label>
+        <label for="frequency">Frequency</label>
         <select name="frequency" id="frequency" onchange="toggleCustomFrequency(this.value)">
             <option value="Daily">Daily</option>
             <option value="Weekly">Weekly</option>
@@ -21,7 +21,7 @@
         </select>
 
         <div id="custom-frequency" style="display: none;">
-            <label id="lbl_dow">Days of the Week:</label>
+            <label id="lbl_dow">Days of the Week</label>
             <div class="dow_chb_wrapper">
                 <label for="dow_mon">Monday</label>
                 <input type="checkbox" name="days_of_week[]" id="dow_mon" value="1">
@@ -51,10 +51,10 @@
                 <input type="checkbox" name="days_of_week[]" id="dow_sun" value="7">
             </div>
 
-            <label for="days_of_month" id="lbl_dom">Days of the Month:</label>
+            <label for="days_of_month" id="lbl_dom">Days of the Month</label>
             <input type="text" name="days_of_month" id="days_of_month" placeholder="1,15 (comma-separated)">
 
-            <label for="months">Months:</label>
+            <label for="months">Months</label>
             <input type="text" name="months" id="months" placeholder="1,7,12 (comma-separated)">
         </div>
 
