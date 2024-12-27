@@ -2,7 +2,10 @@
 
 <section class="dashboard">
     <h1>Welcome, <?= htmlspecialchars($_SESSION['user']['username']) ?>!</h1>
-    <a href="/habits/create" class="btn-primary">Create new habit!</a>
+    <div>
+        <a href="/habits/create" class="btn-green">Create new habit!</a>
+        <a href="/habits" class="btn-primary">List all habits</a>
+    </div>
     <div class="card-wrapper">
         <section class="card upcoming">
             <h2>Upcoming</h2>

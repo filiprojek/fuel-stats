@@ -7,6 +7,11 @@
   --clr-danger-muted: #f851491a;
 
   --clr-link-blue: #4493f8;
+  --clr-light-blue: #39a2ae;
+  --clr-light-green: #71f79f;
+  --clr-red: #9b1d20;
+  --clr-orange: #e08e45;
+  --clr-gray-blue: #627c85;
 
   --border-radious: 5px;
   --borderWidth-thin: max(1px, 0.0625rem);

@@ -24,7 +24,7 @@
         <a href="/auth/signin">Log In</a>
         <a href="/auth/signup">Sign Up</a>
         <?php else: ?>
-        <a href="/auth/logout">Sign out</a>
+        <a href="/auth/logout" class="btn-secondary">Sign out</a>
         <?php endif; ?>
       </div>
     </header>
