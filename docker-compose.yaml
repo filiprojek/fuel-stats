@@ -14,3 +14,14 @@ services:
       - 8080:80
     environment:
       - PMA_ARBITRARY=1
+
+  habittracker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    #volumes:
+    #  - .:/var/www/html
+    ports:
+      - 8000:80
+    depends_on:
+      - mariadb

@@ -1,0 +1,22 @@
+.git
+.gitignore
+
+storage/logs/*
+!storage/logs/.gitignore
+
+Dockerfile
+docker-compose.yaml
+
+*.swp
+*.swo
+*.idea/
+*.vscode/
+*.DS_Store
+
+# Exclude sensitive config files (uncomment if you don't want to include environment config)
+# config/environment.php
+
+README.md
+TODO.md
+LICENSE
+
