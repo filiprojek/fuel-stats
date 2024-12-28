@@ -40,7 +40,7 @@ define('DB_NAME', 'your db name');
 3. Start an local web server
 - You can use php's integrated server by running this:
 ```bash
-php -S localhost:8000
+php -S localhost:8000 -t ./public
 ```
 - You can use any host and any port you want.
 
