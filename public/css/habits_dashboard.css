@@ -1,26 +1,15 @@
-.habits h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+.habits-wrapper {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.habits table {
-  width: 100%;
-  border-collapse: collapse;
+.habits .bordered {
+  border-radius: var(--border-radious);
+  border: var(--borderWidth-thin) solid var(--clr-border);
+  width: 17rem;
+  padding: 1rem;
   margin-top: 1rem;
-}
-
-.habits table th,
-.habits table td {
-  border: 1px solid #ccc;
-  padding: 8px;
-  text-align: left;
-}
-
-.habits a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.habits a:hover {
-  text-decoration: underline;
+  text-align: center;
 }
