@@ -3,8 +3,8 @@
 <section class="dashboard">
     <h1>Welcome, <?= htmlspecialchars($_SESSION['user']['username']) ?>!</h1>
     <div>
-        <a href="/habits/create" class="btn-green">Create new habit!</a>
-        <a href="/habits" class="btn-primary">List all habits</a>
+        <a href="/refuel/add" class="btn-green">Add new refuel record!</a>
+        <a href="/vehicles" class="btn-primary">List all vehicles</a>
     </div>
     <div class="card-wrapper">
         <section class="card upcoming">

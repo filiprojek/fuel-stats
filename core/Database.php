@@ -79,6 +79,7 @@ class Database {
                 registration_plate VARCHAR(50) NOT NULL UNIQUE,
                 fuel_type ENUM('Diesel', 'Gasoline 95', 'Gasoline 98', 'Premium Diesel', 'Premium Gasoline 95', 'Premium Gasoline 98', 'Other') NOT NULL,
                 note VARCHAR(150) NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
             ) ENGINE=InnoDB;
         ";
@@ -95,7 +96,7 @@ class Database {
                 liters DECIMAL(10, 2) NOT NULL,
                 price_per_liter DECIMAL(10, 2) NOT NULL,
                 total_price DECIMAL(10, 2) NOT NULL,
-                refueling_date DATE NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (vehicle_id) REFERENCES vehicles(id) ON DELETE CASCADE
             ) ENGINE=InnoDB;
         ";
