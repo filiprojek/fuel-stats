@@ -1,7 +1,7 @@
 services:
   mariadb:
     image: mariadb:11.4 # LTS at 25. 12. 2025
-    restart: always
+    restart: on-failure:2
     environment:
       MARIADB_ROOT_PASSWORD: root
     ports:
@@ -10,7 +10,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin
-    restart: always
+    restart: on-failure:2
     ports:
       - 8080:80
     environment:
@@ -21,10 +21,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    #volumes:
-    #  - .:/var/www/html
+    volumes:
+      - .:/var/www/html
     ports:
       - 8000:80
     depends_on:
       - mariadb
+    restart: on-failure:2
     profiles: ["prod"]
