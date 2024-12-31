@@ -1,4 +1,4 @@
 <div>
-    <h1>Welcome to Habit Tracker!</h1>
-    <p>Track your habits and achieve your goals.</p>
+    <h1>Welcome to Fuel Stats!</h1>
+    <p>Keep track of your refuels.</p>
 </div>

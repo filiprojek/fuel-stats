@@ -17,7 +17,7 @@ services:
       - PMA_ARBITRARY=1
     profiles: ["dev"]
 
-  habittracker:
+  fuelstats:
     build:
       context: .
       dockerfile: Dockerfile

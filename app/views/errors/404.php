@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habit Tracker | Error 494</title>
+    <title>Fuel Stats | Error 494</title>
 </head>
 <body>
     <h1>Error 404 - Page not found</h1>

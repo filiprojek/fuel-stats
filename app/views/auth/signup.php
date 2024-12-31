@@ -2,8 +2,8 @@
 <link rel="stylesheet" href="/css/form.css">
 <section class="form signup">
     <div class="header-form">
-        <img src="/img/logo.jpg" alt="Habit Tracker Logo">
-        <h1>Sign up to Habit Tracker</h1>
+        <img src="/img/logo.jpg" alt="Fuel Stats Logo">
+        <h1>Sign up to Fuel Stats</h1>
     </div>
 
     <?php if ($this->get('error')): ?>
