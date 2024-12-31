@@ -57,7 +57,7 @@ class Database {
      * Check and create required tables if they don't exist
      */
     private function checkAndCreateTables() {
-        // Create users table
+        // Create tables
         $usersTableQuery = "CREATE TABLE IF NOT EXISTS users (
             id INT AUTO_INCREMENT PRIMARY KEY,
             username VARCHAR(50) NOT NULL,
@@ -71,36 +71,51 @@ class Database {
             die("Failed to create users table: " . $this->connection->error);
         }
 
-        // Create progress table
-        $progressTableQuery = "CREATE TABLE IF NOT EXISTS progress (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            user_id INT NOT NULL,
-            habit_id INT NOT NULL,
-            date DATE NOT NULL,
-            status ENUM('Done', 'Pending') DEFAULT 'Pending',
-            FOREIGN KEY (user_id) REFERENCES users(id)
-        ) ENGINE=InnoDB;";
+        $vehiclesTableQuery = "
+            CREATE TABLE IF NOT EXISTS vehicles (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                user_id INT NOT NULL,
+                name VARCHAR(100) NOT NULL,
+                registration_plate VARCHAR(50) NOT NULL UNIQUE,
+                fuel_type ENUM('Diesel', 'Gasoline 95', 'Gasoline 98', 'Premium Diesel', 'Premium Gasoline 95', 'Premium Gasoline 98', 'Other') NOT NULL,
+                note VARCHAR(150) NULL,
+                FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+            ) ENGINE=InnoDB;
+        ";
 
-        if (!$this->connection->query($progressTableQuery)) {
-            die("Failed to create progress table: " . $this->connection->error);
+        if (!$this->connection->query($vehiclesTableQuery)) {
+            die("Failed to create vehicles table: " . $this->connection->error);
         }
 
-        
-        // Create habits table
-        $habitsTableQuery = "CREATE TABLE IF NOT EXISTS habits (
+        $refuelingTableQuery = "
+            CREATE TABLE IF NOT EXISTS refueling_records (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                vehicle_id INT NOT NULL,
+                fuel_type ENUM('Diesel', 'Gasoline 95', 'Gasoline 98', 'Premium Diesel', 'Premium Gasoline 95', 'Premium Gasoline 98', 'Other') NOT NULL,
+                liters DECIMAL(10, 2) NOT NULL,
+                price_per_liter DECIMAL(10, 2) NOT NULL,
+                total_price DECIMAL(10, 2) NOT NULL,
+                refueling_date DATE NOT NULL,
+                FOREIGN KEY (vehicle_id) REFERENCES vehicles(id) ON DELETE CASCADE
+            ) ENGINE=InnoDB;
+        ";
+
+        if (!$this->connection->query($refuelingTableQuery)) {
+            die("Failed to create refueling_records table: " . $this->connection->error);
+        }
+
+        /*
+        // Create table_name table
+        $usersTableQuery = "CREATE TABLE IF NOT EXISTS table_name (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            user_id INT NOT NULL,
-            title VARCHAR(100) NOT NULL,
-            frequency ENUM('Daily', 'Weekly', 'Custom') NOT NULL,
-            custom_frequency VARCHAR(255) DEFAULT NULL, -- Store crontab-like string
-            reward_points INT DEFAULT 1,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+            username VARCHAR(50) NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         ) ENGINE=InnoDB;";
 
-        if (!$this->connection->query($habitsTableQuery)) {
-            die("Failed to create habits table: " . $this->connection->error);
+        if (!$this->connection->query($usersTableQuery)) {
+            die("Failed to create table_name table: " . $this->connection->error);
         }
+        */
     }
 
     /**
