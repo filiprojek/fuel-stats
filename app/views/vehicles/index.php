@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/css/vehicles.css">
 <section class="vehicles">
     <?php if (empty($this->get('vehicles'))): ?>
-        <p>No vehicles yet. <a href="/vehicles/add">Add your first vehicle</a>.</p>
+        <p>No vehicles yet. <a href="/vehicles/create">Add your first vehicle</a>.</p>
     <?php else: ?>
         <div class="vehicle-wrapper">
         <?php foreach ($this->get('vehicles') as $vehicle): ?>

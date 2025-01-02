@@ -44,7 +44,7 @@ $router->add('/dashboard', 'DashboardController@index', ['RequireAuth']);
 // habits routes
 $router->group('/vehicles', ['RequireAuth'], function ($router) {
     $router->add('', 'VehicleController@index');
-    $router->add('/add', 'VehicleController@create');
+    $router->add('/create', 'VehicleController@create');
     $router->add('/edit/{id}', 'VehicleController@edit');
     $router->add('/delete/{id}', 'VehicleController@delete');
 });
