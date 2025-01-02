@@ -9,7 +9,7 @@
         </div>
     <?php endif; ?>
 
-    <form method="POST" action="/vehicles/add">
+    <form method="POST" action="/vehicles/create">
         <label for="name">Vehicle name</label>
         <input type="text" name="name" id="name" required value="<?= htmlspecialchars($_POST['name'] ?? '') ?>">
 
