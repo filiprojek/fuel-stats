@@ -1,0 +1,36 @@
+name: Build and Deploy Zola Website
+
+on:
+  push:
+    branches:
+      - master
+env:
+  HOST: ${{ secrets.SERVER_IP }}
+  SSH_USERNAME: ${{ secrets.USERNAME }}
+  SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+  DEST_FOLDER: "/srv/www/cz/filiprojek/fuelstats"
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Deploy
+        run: |
+          apt update -y && apt-get install -y --no-install-recommends rsync
+          eval "$(ssh-agent -s)"
+          ssh-add - <<< "${SSH_PRIVATE_KEY}"
+          mkdir -p ~/.ssh/
+          ssh-keyscan -H ${HOST} >> ~/.ssh/known_hosts
+          rsync -r --delete-after ./* "${SSH_USERNAME}@${HOST}:${{ env.DEST_FOLDER }}"
+
+      - name: Copy environment.php
+        run: |
+          eval "$(ssh-agent -s)"
+          ssh-add - <<< "${SSH_PRIVATE_KEY}"
+          mkdir -p ~/.ssh/
+          ssh-keyscan -H ${HOST} >> ~/.ssh/known_hosts
+          ssh ${SSH_USERNAME}@${HOST} "cp /var/websrvenv/environment.php /srv/www/cz/filiprojek/fuelstats/config/environment.php"
