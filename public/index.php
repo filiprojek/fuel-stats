@@ -21,7 +21,7 @@ require_once '../core/middlewares/RequireAuth.php';
 
 require_once models . 'User.php';
 require_once models . 'Vehicle.php';
-#require_once models . 'Refueling.php';
+require_once models . 'Refuel.php';
 
 // Initialize router
 $router = new Router();
@@ -41,12 +41,16 @@ $router->group('/auth', [], function ($router) {
 // dashboard route
 $router->add('/dashboard', 'DashboardController@index', ['RequireAuth']);
 
-// habits routes
+// vehicle routes
 $router->group('/vehicles', ['RequireAuth'], function ($router) {
     $router->add('', 'VehicleController@index');
     $router->add('/create', 'VehicleController@create');
     $router->add('/edit/{id}', 'VehicleController@edit');
     $router->add('/delete/{id}', 'VehicleController@delete');
+});
+
+$router->group('/refuel', ['RequireAuth'], function ($router) {
+    $router->add('/create', 'RefuelController@create');
 });
 
 $router->dispatch();

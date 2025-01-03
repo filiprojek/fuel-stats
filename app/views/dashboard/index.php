@@ -3,7 +3,7 @@
 <section class="dashboard">
     <h1>Welcome, <?= htmlspecialchars($_SESSION['user']['username']) ?>!</h1>
     <div>
-        <a href="/refuel/add" class="btn-green">Add new refuel record!</a>
+        <a href="/refuel/create" class="btn-green">Add new refuel record!</a>
         <a href="/vehicles" class="btn-primary">List all vehicles</a>
     </div>
     <div class="card-wrapper">

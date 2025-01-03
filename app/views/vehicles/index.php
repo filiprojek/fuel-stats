@@ -11,6 +11,7 @@
             <div class="vehicle bordered">
                 <b><?= htmlspecialchars($vehicle['name']) ?></b>
                 <p><?= htmlspecialchars($vehicle['registration_plate']) ?></p>
+                <p><?= htmlspecialchars($vehicle['fuel_type']) ?></p>
                 <p><?= htmlspecialchars($vehicle['note'] ?? "") ?></p>
                 <div class="actions">
                     <a href="/vehicles/edit?id=<?= $vehicle['id'] ?>">Edit</a>
