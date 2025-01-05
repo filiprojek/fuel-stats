@@ -6,7 +6,7 @@
     <meta name="author" content="Filip Rojek | http://filiprojek.cz">
     <meta name="email" content="webmaster(@)fofrweb.com">
     <meta name="copyright" content="(c) filiprojek.cz">
-    <title>Fuel Stats | <?= $data['title'] ?></title>
+    <title>Fuel Stats<?= isset($data['title']) ? " | " . $data['title'] : "" ?></title>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/css/vars.css">

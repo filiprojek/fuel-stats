@@ -13,6 +13,15 @@ class Validator {
     }
 
     /**
+     * Check if a field contains numbers
+     */
+    public function number($field, $value, $message = null) {
+        if(!is_numeric($value)) {
+            $this->errors[$field] = $message ?? "$field must be an number";
+        }
+    }
+
+    /**
      * Check if a field meets minimum length
      */
     public function minLength($field, $value, $length, $message = null) {
@@ -44,6 +53,10 @@ class Validator {
      */
     public function errors() {
         return $this->errors;
+    }
+
+    public function setErrors($errors) {
+        $this->errors = $errors;
     }
 
     /**

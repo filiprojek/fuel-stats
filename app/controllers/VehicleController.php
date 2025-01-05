@@ -22,7 +22,7 @@ class VehicleController extends Controller {
             if($note == "") $note = NULL;
 
             if (!$validator->passes()) {
-                $this->view('vehicle/create', [
+                $this->view('vehicles/create', [
                     'error' => 'Please correct the errors below.',
                     'validationErrors' => $validator->errors() ?: [],
                 ]);

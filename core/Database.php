@@ -91,13 +91,16 @@ class Database {
         $refuelingTableQuery = "
             CREATE TABLE IF NOT EXISTS refueling_records (
                 id INT AUTO_INCREMENT PRIMARY KEY,
+                user_id INT NOT NULL,
                 vehicle_id INT NOT NULL,
                 fuel_type ENUM('Diesel', 'Gasoline 95', 'Gasoline 98', 'Premium Diesel', 'Premium Gasoline 95', 'Premium Gasoline 98', 'Other') NOT NULL,
-                liters DECIMAL(10, 2) NOT NULL,
-                price_per_liter DECIMAL(10, 2) NOT NULL,
-                total_price DECIMAL(10, 2) NOT NULL,
+                note VARCHAR(150) NULL,
+                liters DOUBLE(10, 2) NOT NULL,
+                price_per_liter DOUBLE(10, 2) NOT NULL,
+                total_price DOUBLE(10, 2) NOT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (vehicle_id) REFERENCES vehicles(id) ON DELETE CASCADE
+                FOREIGN KEY (vehicle_id) REFERENCES vehicles(id) ON DELETE CASCADE,
+                FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
             ) ENGINE=InnoDB;
         ";
 
