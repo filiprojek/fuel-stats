@@ -16,6 +16,6 @@
   background-color: var(--clr-secondary);
   border-radius: var(--border-radious);
   border: var(--borderWidth-thin) solid var(--clr-border);
-  min-width: 17rem;
+  width: 18rem;
   padding: 1rem;
 }

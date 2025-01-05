@@ -79,6 +79,7 @@ class Database {
                 registration_plate VARCHAR(50) NOT NULL UNIQUE,
                 fuel_type ENUM('Diesel', 'Gasoline 95', 'Gasoline 98', 'Premium Diesel', 'Premium Gasoline 95', 'Premium Gasoline 98', 'Other') NOT NULL,
                 note VARCHAR(150) NULL,
+                is_default BOOLEAN DEFAULT FALSE NOT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
             ) ENGINE=InnoDB;
