@@ -46,7 +46,7 @@ $router->group('/vehicles', ['RequireAuth'], function ($router) {
     $router->add('', 'VehicleController@index');
     $router->add('/create', 'VehicleController@create');
     $router->add('/edit/{id}', 'VehicleController@edit');
-    $router->add('/delete/{id}', 'VehicleController@delete');
+    $router->add('/delete', 'VehicleController@delete');
 });
 
 $router->group('/refuel', ['RequireAuth'], function ($router) {

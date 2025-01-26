@@ -56,7 +56,23 @@ class VehicleController extends Controller {
     }
 
     public function delete() {
-        // TODO: Delete vehicle (to be implemented later)
+        if(!$_SERVER['REQUEST_METHOD'] === 'POST') {
+            echo "Wrong method";
+            return;
+        }
+
+        // TODO: Validate the request
+        $vehicle_id = $_POST['vehicle_id'];
+
+        $vehicle = new Vehicle();
+        $result = $vehicle->delete($vehicle_id, $_SESSION['user']['id']);
+
+        if($result != true) {
+            echo "Something went wrong";
+            return;
+        }
+
+        $this->view('vehicles/index', ['title' => 'Vehicles', 'vehicles' => $vehicles]);
     }
 
     public function api_get() {

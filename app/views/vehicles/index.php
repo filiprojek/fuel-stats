@@ -14,8 +14,10 @@
                 <p><?= htmlspecialchars($vehicle['fuel_type']) ?></p>
                 <p><?= htmlspecialchars($vehicle['note'] ?? "") ?></p>
                 <div class="actions">
-                    <a href="/vehicles/edit?id=<?= $vehicle['id'] ?>">Edit</a>
-                    <a href="/vehicles/delete?id=<?= $vehicle['id'] ?>" onclick="return confirm('Are you sure you want to delete this habit?')">Delete</a>
+                <form method="POST" action="/vehicles/delete">
+                    <input type="number" name="vehicle_id" value="<?= $vehicle['id'] ?>" style="display: none">
+                    <input type="submit" value="Delete vehicle" class="btn-danger">
+                </form>
                 </div>
             </div>
         <?php endforeach; ?>

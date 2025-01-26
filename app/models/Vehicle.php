@@ -60,4 +60,28 @@ class Vehicle {
 
         return $result->fetch_assoc();
     }
+
+    public function delete($vehicle_id, $user_id) {
+        try {
+            $stmt = $this->db->prepare("SELECT id FROM vehicles WHERE id = ? AND user_id = ?");
+            $stmt->bind_param("ii", $vehicle_id, $user_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows === 0) {
+                return "Error: Unauthorized action or vehicle not found.";
+            }
+
+            $stmt = $this->db->prepare("DELETE FROM vehicles WHERE id = ?");
+            $stmt->bind_param("i", $vehicle_id);
+
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                return "Error: " . $stmt->error;
+            }
+        } catch (mysqli_sql_exception $e) {
+            return $e->getMessage();
+        }
+    }
 }
