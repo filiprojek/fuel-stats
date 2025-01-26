@@ -53,5 +53,13 @@ php -S localhost:8000 -t ./public
 4. Track your fuel consumption and spending through the dashboard.
 5. View detailed stats and graphs to analyze your driving habits.
 
+## Use case diagram
+![](.screenshots/usecase.png)
+## Data logical model
+![](.screenshots/dlm.png)
+
+## Class diagram
+![](.screenshots/class.png)
+
 ## License
 This project is licensed under GPL3.0 and later. More information is available in the `LICENSE` file.
