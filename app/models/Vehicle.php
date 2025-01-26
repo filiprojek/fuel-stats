@@ -61,6 +61,39 @@ class Vehicle {
         return $result->fetch_assoc();
     }
 
+    public function setDefaultVehicle($vehicle_id, $user_id) {
+        try {
+            $this->db->begin_transaction();
+
+            $stmt = $this->db->prepare("
+                UPDATE `vehicles` 
+                SET `is_default` = 0 
+                WHERE `user_id` = ? AND `is_default` = 1
+            ");
+            $stmt->bind_param("i", $user_id);
+            $stmt->execute();
+            $stmt->close();
+
+            $stmt = $this->db->prepare("
+                UPDATE `vehicles` 
+                SET `is_default` = 1 
+                WHERE `id` = ? AND `user_id` = ?
+            ");
+            $stmt->bind_param("ii", $vehicle_id, $user_id);
+
+            if ($stmt->execute()) {
+                $this->db->commit();
+                return true;
+            } else {
+                $this->db->rollback();
+                return "Error: " . $stmt->error;
+            }
+        } catch (mysqli_sql_exception $e) {
+            $this->db->rollback();
+            return $e->getMessage();
+        }
+    }
+
     public function delete($vehicle_id, $user_id) {
         try {
             $stmt = $this->db->prepare("SELECT id FROM vehicles WHERE id = ? AND user_id = ?");

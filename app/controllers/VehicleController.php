@@ -75,6 +75,18 @@ class VehicleController extends Controller {
         $this->view('vehicles/index', ['title' => 'Vehicles', 'vehicles' => $vehicles]);
     }
 
+    public function setDefault() {
+        $vehicle = new Vehicle();
+        // TODO: Validate the request
+        $result = $vehicle->setDefaultVehicle($_POST['vehicle_id'], $_SESSION['user']['id']);
+        if($result != true) {
+            echo "Something went wrong";
+            return;
+        }
+
+        $this->view('vehicles/index', ['title' => 'Vehicles', 'vehicles' => $vehicles]);
+    }
+
     public function api_get() {
         if(!$_SERVER['REQUEST_METHOD'] === 'GET') {
             echo "Wrong method, use GET";

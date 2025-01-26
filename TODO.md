@@ -25,8 +25,8 @@
 ## What has to be done
 - [x] Vehicle delete
 - [ ] intro tutorial when no car exist or just dont show anything
-- [ ] change/set default car
-- [ ] hide errors
+- [x] change/set default car
+- [x] hide errors
 
 ## Nice to have
 - [ ] specific car view - charts, fuel records
