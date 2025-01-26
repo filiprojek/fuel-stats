@@ -20,7 +20,8 @@ h1 {
 .btn-secondary,
 .btn-tertiary,
 .btn-green,
-.btn-danger {
+.btn-danger,
+.btn-warning {
 	background-color: var(--clr-primary);
 	padding: .5rem;
 	text-decoration: none;
@@ -44,5 +45,10 @@ h1 {
 
 .btn-danger {
 	background-color: var(--clr-danger-muted);
+	border: var(--borderWidth-thin) solid var(--clr-border-danger);
+}
+
+.btn-warning {
+	background-color: var(--clr-warning-muted);
 	border: var(--borderWidth-thin) solid var(--clr-border-danger);
 }

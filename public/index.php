@@ -53,4 +53,9 @@ $router->group('/refuel', ['RequireAuth'], function ($router) {
     $router->add('/create', 'RefuelController@create');
 });
 
+// API
+$router->group('/api/v1', ['RequireAuth'], function ($router) {
+    $router->add('/vehicles/get', 'VehicleController@api_get');
+});
+
 $router->dispatch();

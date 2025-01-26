@@ -19,3 +19,21 @@
   width: 18rem;
   padding: 1rem;
 }
+
+#btn-offline-add {
+  display: none;
+}
+
+.alert-warning {
+  background-color: var(--clr-warning-muted);
+  border: var(--borderWidth-thin) solid var(--clr-border-danger);
+  padding: 1rem;
+  border-radius: var(--border-radious);
+}
+
+.alert-danger {
+  background-color: var(--clr-danger-muted);
+  border: var(--borderWidth-thin) solid var(--clr-border-danger);
+  padding: 1rem;
+  border-radius: var(--border-radious);
+}

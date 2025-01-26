@@ -52,10 +52,21 @@ class VehicleController extends Controller {
 
 
     public function edit() {
-        // Edit vehicle (to be implemented later)
+        // TODO: Edit vehicle (to be implemented later)
     }
 
     public function delete() {
-        // Delete vehicle (to be implemented later)
+        // TODO: Delete vehicle (to be implemented later)
+    }
+
+    public function api_get() {
+        if(!$_SERVER['REQUEST_METHOD'] === 'GET') {
+            echo "Wrong method, use GET";
+            return;
+        }
+
+        $vehicle = new Vehicle();
+        $result = $vehicle->getVehiclesByUser($_SESSION['user']['id']);
+        echo json_encode($result);
     }
 }

@@ -1,11 +1,14 @@
 <link rel="stylesheet" href="/css/dashboard.css">
 
+<link rel="stylesheet" href="/css/form.css">
+<link rel="stylesheet" href="/css/vehicle_create.css">
+
 <section class="dashboard">
     <h1>Welcome, <?= htmlspecialchars($_SESSION['user']['username']) ?>!</h1>
-    <div>
+    <div id="actions">
         <a href="/refuel/create" class="btn-green">Add new refuel record!</a>
         <a href="/vehicles" class="btn-primary">List all vehicles</a>
-        <button class="btn-primary" id="btn-offline-add">Add new refuel record OFFLINE</button>
+        <a class="btn-warning" id="btn-offline-add">Add new offline refuel record</a>
     </div>
     <div class="card-wrapper">
         <section class="card latest">
