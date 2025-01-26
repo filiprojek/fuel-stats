@@ -27,6 +27,7 @@ h1 {
 	cursor: pointer;
 	border-radius: var(--border-radious);
 	border: var(--borderWidth-thin) solid var(--clr-border);
+	color: white;
 }
 
 .btn-secondary {

@@ -5,6 +5,7 @@
     <div>
         <a href="/refuel/create" class="btn-green">Add new refuel record!</a>
         <a href="/vehicles" class="btn-primary">List all vehicles</a>
+        <button class="btn-primary" id="btn-offline-add">Add new refuel record OFFLINE</button>
     </div>
     <div class="card-wrapper">
         <section class="card latest">
@@ -43,8 +44,8 @@
         </section>
     </div>
 </section>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
     const ctx = document.getElementById('chart-gas-price');
     const data = <?= json_encode($data['date_price_data']); ?>;
 
@@ -60,3 +61,4 @@
         },
     });
 </script>
+<script defer src="/js/offline-records.js"></script>
