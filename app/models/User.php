@@ -29,7 +29,7 @@ class User {
 
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-        $stmt = $this->db->prepare("INSERT INTO users (username, email, password, points, created_at) VALUES (?, ?, ?, 0, NOW())");
+        $stmt = $this->db->prepare("INSERT INTO users (username, email, password, created_at) VALUES (?, ?, ?, NOW())");
         $stmt->bind_param("sss", $username, $email, $hashedPassword);
 
         if ($stmt->execute()) {
