@@ -204,6 +204,12 @@ btnOffline.addEventListener("click", async (e) => {
             <!--     <small class="error"><?= $this->get('validationErrors')['total_price'] ?></small> -->
             <!-- <?php endif; ?> -->
 
+        		<label for="mileage">Mileage</label>
+        		<input type="number" name="mileage" id="mileage" min="0" step="1" value="0">
+        		<!-- <?php if (isset($this->get('validationErrors')['mileage'])): ?> -->
+         		<!--    	<small class="error"><?= $this->get('validationErrors')['mileage'] ?></small> -->
+        		<!-- <?php endif; ?> -->
+
             <label for="note">Note</label>
             <input type="text" name="note" id="note">
             <!-- <?php if (isset($this->get('validationErrors')['note'])): ?> -->
@@ -229,6 +235,7 @@ btnOffline.addEventListener("click", async (e) => {
 			total_price: document.querySelector(
 				"form#offline_refuel_add #total_price",
 			).value,
+			mileage: document.querySelector("form#offline_refuel_add #mileage").value,
 			note: document.querySelector("form#offline_refuel_add #note").value,
 		};
 

@@ -23,6 +23,8 @@
                 <p><?= $data['latest_record']['price_per_liter'] ?>,-/liter</p>
                 <b>Total price:</b>
                 <p><?= $data['latest_record']['total_price'] ?>,-</p>
+                <b>Mileage:</b>
+                <p><?= $data['latest_record']['mileage'] ?> km</p>
             </div>
         </section>
 
@@ -45,6 +47,13 @@
             <p><?= $data['default_car']['name'] . " | " . $data['default_car']['registration_plate']?></p>
             <canvas id="chart-gas-price"></canvas>
         </section>
+
+        <section class="card history-graph">
+            <h2>Average fuel consumption</h2>
+            <hr>
+            <p><?= $data['default_car']['name'] . " | " . $data['default_car']['registration_plate']?></p>
+            <b id="avg-fl-cnsmp"></b>
+        </section>
     </div>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -64,4 +73,28 @@
         },
     });
 </script>
+
+<script>
+    const data2 = <?= json_encode($data['date_price_data']); ?>;
+    let cnt_ltr = 0
+    let cnt_km = 0
+    let first_km = 0
+
+    console.log(data2)
+
+    for(let i = 0; i < data2['liters'].length; i++) {
+        if(i == 0) {
+            first_km = data2['mileage'][i]
+        }
+        cnt_ltr += data2['liters'][i]
+        cnt_km =+ data2['mileage'][i]
+    }
+
+    console.log("Liters", cnt_ltr, cnt_km, first_km)
+    console.log("Avg", (cnt_km - first_km) / cnt_ltr)
+
+    document.querySelector("#avg-fl-cnsmp").textContent = Math.floor((cnt_km - first_km) / cnt_ltr) + " l/100km"
+</script>
+
+
 <script defer src="/js/offline-records.js"></script>

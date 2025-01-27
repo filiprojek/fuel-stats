@@ -10,20 +10,16 @@ class DashboardController extends Controller {
         $data = [
             "date" => [],
             "price" => [],
+            "mileage" => [],
+            "liters" => []
         ];
         $raw_data = $refuel->latest_data($default_car['id'], 5);
         foreach($raw_data as $one) {
             array_push($data['date'], date('d. m.', strtotime($one['created_at'])));
             array_push($data['price'], $one['price_per_liter']);
+            array_push($data['mileage'], $one['mileage']);
+            array_push($data['liters'], $one['liters']);
         }
-
-        $latest_record = [
-            'name',
-            'liters',
-            'price_per_liter',
-            'total_price',
-            'created_at'
-        ];
 
         $latest_record = $refuel->latest_one($_SESSION['user']['id'])[0];
 

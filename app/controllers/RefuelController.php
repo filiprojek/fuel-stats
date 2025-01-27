@@ -18,6 +18,7 @@ class RefuelController extends Controller {
             $liters = $_POST['liters'] ?? '';
             $price_per_liter = $_POST['price_per_liter'] ?? '';
             $total_price = $_POST['total_price'] ?? '';
+            $mileage = $_POST['mileage'] ?? '';
             $note = $_POST['note'] ?? '';
 
             $validator = new Validator();
@@ -29,6 +30,7 @@ class RefuelController extends Controller {
             $validator->number('liters', $liters);
             $validator->number('price_per_liter', $price_per_liter);
             $validator->number('total_price', $total_price);
+            $validator->number('mileage', $mileage);
 
             if (round($liters * $price_per_liter, 2) != $total_price) {
                 $validator->setErrors(["total_price" => "Price calculation is wrong"]);
@@ -57,6 +59,7 @@ class RefuelController extends Controller {
                 'liters' => $liters,
                 'price_per_liter' => $price_per_liter,
                 'total_price' => $total_price,
+                'mileage' => $mileage,
             ]);
 
             if ($result === true) {

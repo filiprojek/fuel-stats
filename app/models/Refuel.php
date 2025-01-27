@@ -10,12 +10,12 @@ class Refuel {
     public function create($data) {
         try{
             $stmt = $this->db->prepare("
-                INSERT INTO refueling_records (user_id, vehicle_id, fuel_type, note, liters, price_per_liter, total_price, created_at)
-                VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+                INSERT INTO refueling_records (user_id, vehicle_id, fuel_type, note, liters, price_per_liter, total_price, mileage, created_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())
             ");
 
             $stmt->bind_param(
-                "iissddd",
+                "iissdddi",
                 $data['user_id'],
                 $data['vehicle_id'],
                 $data['fuel_type'],
@@ -23,6 +23,7 @@ class Refuel {
                 $data['liters'],
                 $data['price_per_liter'],
                 $data['total_price'],
+                $data['mileage'],
             );
 
             if ($stmt->execute()) {
@@ -38,7 +39,7 @@ class Refuel {
     public function latest_data($vehicle_id, $record_count) {
         try {
             $stmt = $this->db->prepare("
-                SELECT `liters`, `price_per_liter`, `total_price`, `created_at`
+                SELECT `liters`, `price_per_liter`, `total_price`, `mileage`, `created_at`
                 FROM `refueling_records`
                 WHERE `vehicle_id` = ?
                 ORDER BY created_at DESC
@@ -68,6 +69,7 @@ class Refuel {
                     `r`.`liters`, 
                     `r`.`price_per_liter`, 
                     `r`.`total_price`, 
+                    `r`.`mileage`, 
                     `r`.`created_at`
                 FROM `refueling_records` AS `r`
                 JOIN `vehicles` AS `v` ON `r`.`vehicle_id` = `v`.`id`

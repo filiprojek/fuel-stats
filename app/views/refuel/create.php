@@ -52,6 +52,12 @@
             <small class="error"><?= $this->get('validationErrors')['total_price'] ?></small>
         <?php endif; ?>
 
+        <label for="mileage">Mileage</label>
+        <input type="number" name="mileage" id="mileage" min="0" step="1" value="<?= htmlspecialchars($_POST['mileage'] ?? '0') ?>">
+        <?php if (isset($this->get('validationErrors')['mileage'])): ?>
+            <small class="error"><?= $this->get('validationErrors')['mileage'] ?></small>
+        <?php endif; ?>
+
         <label for="note">Note</label>
         <input type="text" name="note" id="note" value="<?= htmlspecialchars($_POST['note'] ?? '') ?>">
         <?php if (isset($this->get('validationErrors')['note'])): ?>

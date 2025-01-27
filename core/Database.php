@@ -63,7 +63,6 @@ class Database {
             username VARCHAR(50) NOT NULL,
             email VARCHAR(100) NOT NULL UNIQUE,
             password VARCHAR(255) NOT NULL,
-            points INT DEFAULT 0,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         ) ENGINE=InnoDB;";
 
@@ -99,6 +98,7 @@ class Database {
                 liters DOUBLE(10, 2) NOT NULL,
                 price_per_liter DOUBLE(10, 2) NOT NULL,
                 total_price DOUBLE(10, 2) NOT NULL,
+                mileage INT UNSIGNED NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (vehicle_id) REFERENCES vehicles(id) ON DELETE CASCADE,
                 FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
