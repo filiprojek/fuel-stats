@@ -7,15 +7,15 @@
 
 ## Core of the app
 - [ ] intro tutorial when no car exist or just dont show anything
-- [ ] change/set default car
+- [x] change/set default car
 - [ ] specific car view - charts, fuel records
 - [ ] remove/edit fuel record
 
 ## Until release
 - [x] Sync offline data from locale storage
-- [ ] Include kilometer state of an car
+- [x] Include kilometer state of an car
 - [ ] More charts
-  - [ ] Average fuel conusption
+  - [x] Average fuel conusption
   - [ ] Kilometer state
 - [ ] More cards
   - [ ] Average fuel conusption in last 30 days
@@ -31,14 +31,14 @@
 ## Nice to have
 - [ ] specific car view - charts, fuel records
 - [ ] remove/edit fuel record
-- [ ] Include kilometer state of an car
+- [x] Include kilometer state of an car
 - [ ] More charts
-  - [ ] Average fuel conusption
+  - [x] Average fuel conusption
   - [ ] Kilometer state
 - [ ] More cards
   - [ ] Average fuel conusption in last 30 days
   - [ ] Kilometer state in last 30 days`
 - [ ] Offline navigation between dashboard and offline form
 - [ ] Fix vehicle deletion - wrong redirect
-
+- [ ] Update diagrams in README.md
 
