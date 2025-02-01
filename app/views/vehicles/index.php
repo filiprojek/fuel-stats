@@ -14,18 +14,20 @@
                 <p><?= htmlspecialchars($vehicle['fuel_type']) ?></p>
                 <p><?= htmlspecialchars($vehicle['note'] ?? "") ?></p>
 
-                <div class="actions">
+                <div class="vehicle-actions">
                     <br>
                     <form method="POST" action="/vehicles/delete">
                         <input type="number" name="vehicle_id" value="<?= $vehicle['id'] ?>" style="display: none">
                         <input type="submit" value="Delete vehicle" class="btn-danger">
                     </form>
 
+                    <?php if(!$vehicle['is_default']): ?>
                     <br>
                     <form method="POST" action="/vehicles/default">
                         <input type="number" name="vehicle_id" value="<?= $vehicle['id'] ?>" style="display: none">
                         <input type="submit" value="Set as default" class="btn-primary">
                     </form>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endforeach; ?>

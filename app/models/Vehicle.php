@@ -35,7 +35,7 @@ class Vehicle {
     }
 
     public function getVehiclesByUser($user_id) {
-        $stmt = $this->db->prepare("SELECT id, name, registration_plate, fuel_type, note, created_at FROM vehicles WHERE user_id = ?");
+        $stmt = $this->db->prepare("SELECT id, name, registration_plate, fuel_type, note, is_default, created_at FROM vehicles WHERE user_id = ?");
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
         $result = $stmt->get_result();
