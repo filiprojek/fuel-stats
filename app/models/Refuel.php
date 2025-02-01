@@ -38,15 +38,24 @@ class Refuel {
 
     public function latest_data($vehicle_id, $record_count) {
         try {
-            $stmt = $this->db->prepare("
+            $sql = "
                 SELECT `liters`, `price_per_liter`, `total_price`, `mileage`, `created_at`
                 FROM `refueling_records`
                 WHERE `vehicle_id` = ?
-                ORDER BY created_at DESC
-                LIMIT ?;
-            ");
+                ORDER BY created_at DESC";
 
-            $stmt->bind_param("ii", $vehicle_id, $record_count);
+            if ($record_count > 0) {
+                $sql .= " LIMIT ?";
+            }
+
+            $stmt = $this->db->prepare($sql);
+
+            if ($record_count > 0) {
+                $stmt->bind_param("ii", $vehicle_id, $record_count);
+            } else {
+                $stmt->bind_param("i", $vehicle_id);
+            }
+
             if ($stmt->execute()) {
                 $result = $stmt->get_result();
                 $data = $result->fetch_all(MYSQLI_ASSOC);
@@ -62,7 +71,7 @@ class Refuel {
 
     public function latest_one($vehicle_id, $record_count = 1) {
         try {
-            $stmt = $this->db->prepare("
+            $sql = "
                 SELECT 
                     `r`.`vehicle_id`, 
                     `v`.`name` AS `vehicle_name`, 
@@ -75,11 +84,20 @@ class Refuel {
                 FROM `refueling_records` AS `r`
                 JOIN `vehicles` AS `v` ON `r`.`vehicle_id` = `v`.`id`
                 WHERE `r`.`vehicle_id` = ?
-                ORDER BY `r`.`created_at` DESC
-                LIMIT ?;
-            ");
+                ORDER BY `r`.`created_at` DESC";
 
-            $stmt->bind_param("ii", $vehicle_id, $record_count);
+            if ($record_count > 0) {
+                $sql .= " LIMIT ?";
+            }
+
+            $stmt = $this->db->prepare($sql);
+
+            if ($record_count > 0) {
+                $stmt->bind_param("ii", $vehicle_id, $record_count);
+            } else {
+                $stmt->bind_param("i", $vehicle_id);
+            }
+
             if ($stmt->execute()) {
                 $result = $stmt->get_result();
                 $data = $result->fetch_all(MYSQLI_ASSOC);

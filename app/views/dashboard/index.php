@@ -97,25 +97,23 @@
 </script>
 
 <script>
-    const data2 = <?= json_encode($data['date_price_data']); ?>;
-    let cnt_ltr = 0
-    let cnt_km = 0
-    let first_km = 0
+	const data2 = <?= json_encode($data['date_price_data']); ?>;
+	let cnt_ltr = 0;
+    let last_ltr = 0;
+    let last_km = 0;
 
-    console.log(data2)
+	console.log(data2);
 
-    for(let i = 0; i < data2['liters'].length; i++) {
-        if(i == 0) {
-            first_km = data2['mileage'][i]
-        }
-        cnt_ltr += data2['liters'][i]
-        cnt_km =+ data2['mileage'][i]
-    }
+	for (let i = 0; i < data2['liters'].length; i++) {
+		cnt_ltr += data2['liters'][i]
+        last_ltr = data2['liters'][i]
+        last_km = data2['mileage'][i]
+	}
 
-    console.log("Liters", cnt_ltr, cnt_km, first_km)
-    console.log("Avg", (cnt_km - first_km) / cnt_ltr)
+    cnt_ltr -= last_ltr
 
-    document.querySelector("#avg-fl-cnsmp").textContent = Math.floor((cnt_km - first_km) / cnt_ltr) + " l/100km"
+	document.querySelector("#avg-fl-cnsmp").textContent =
+		(cnt_ltr/last_km*100).toFixed(1) + " l/100km";
 </script>
 
 

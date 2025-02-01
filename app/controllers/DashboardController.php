@@ -12,7 +12,7 @@ class DashboardController extends Controller {
             "mileage" => [],
             "liters" => []
         ];
-        $raw_data = $default_car ? $refuel->latest_data($default_car['id'], 5) : [];
+        $raw_data = $default_car ? $refuel->latest_data($default_car['id'], 0) : [];
         foreach($raw_data as $one) {
             array_push($data['date'], date('d. m.', strtotime($one['created_at'])));
             array_push($data['price'], $one['price_per_liter']);
