@@ -101,20 +101,23 @@
 	let cnt_ltr = 0;
     let last_ltr = 0;
     let last_km = 0;
-
-	console.log(data2);
+	let first_km = 0;
 
 	for (let i = 0; i < data2['liters'].length; i++) {
+		if(i === 0) {
+			first_km = data2['mileage'][i]
+			continue; // skip bcs were expecting that this was first full tank refuel so this is base value
+		}
 		cnt_ltr += data2['liters'][i]
         last_ltr = data2['liters'][i]
         last_km = data2['mileage'][i]
 	}
 
-    cnt_ltr -= last_ltr
+    // cnt_ltr -= last_ltr // this would be used if we would track consumption from 0km
+	last_km -= first_km
 
-	document.querySelector("#avg-fl-cnsmp").textContent =
+    document.querySelector("#avg-fl-cnsmp").textContent =
 		(cnt_ltr/last_km*100).toFixed(1) + " l/100km";
 </script>
-
 
 <script defer src="/js/offline-records.js"></script>
