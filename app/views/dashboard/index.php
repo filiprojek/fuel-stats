@@ -5,8 +5,15 @@
 
 <section class="dashboard">
     <h1>Welcome, <?= htmlspecialchars($_SESSION['user']['username']) ?>!</h1>
+    <?php if(!isset($data['default_car'])): ?>
+    
+    <div id="intro">
+        <a href="/vehicles/create">Create your first vehicle</a>
+    </div>
+    <?php elseif (isset($data['latest_record'])): ?>
+
     <div id="actions">
-        <a href="/refuel/create" class="btn-green">Add new refuel record!</a>
+        <a href="/refuel/create" class="btn-green">Add new refuel record</a>
         <a href="/vehicles" class="btn-primary">List all vehicles</a>
         <a class="btn-warning" id="btn-offline-add">Add new offline refuel record</a>
     </div>
@@ -25,6 +32,10 @@
                 <p><?= $data['latest_record']['total_price'] ?>,-</p>
                 <b>Mileage:</b>
                 <p><?= $data['latest_record']['mileage'] ?> km</p>
+                <?php if (isset($data['latest_record']['note'])): ?>
+                <b>Note:</b>
+                <p><?= $data['latest_record']['note'] ?></p>
+                <?php endif; ?>
             </div>
         </section>
 
@@ -55,6 +66,17 @@
             <b id="avg-fl-cnsmp"></b>
         </section>
     </div>
+    <?php else: ?>
+    <div id="actions">
+        <a href="/refuel/create" class="btn-green">Add new refuel record</a>
+        <a href="/vehicles" class="btn-primary">List all vehicles</a>
+        <a class="btn-warning" id="btn-offline-add">Add new offline refuel record</a>
+    </div>
+    <div class="alert-warning">
+        <p>Default vehicle <b><i><?= $data['default_car']['name'] ?></i></b> doesn't have any refuel record yet.</p>
+        <p>Select another vehicle or create first refuel record.</p>
+    </div>
+    <?php endif; ?>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>

@@ -10,17 +10,18 @@ class Vehicle {
     public function create($data) {
         try{
             $stmt = $this->db->prepare("
-                INSERT INTO vehicles (user_id, name, registration_plate, fuel_type, note, created_at)
-                VALUES (?, ?, ?, ?, ?, NOW())
+                INSERT INTO vehicles (user_id, name, registration_plate, fuel_type, note, is_default, created_at)
+                VALUES (?, ?, ?, ?, ?, ?, NOW())
             ");
 
             $stmt->bind_param(
-                "issss",
+                "issssi",
                 $data['user_id'],
                 $data['name'],
                 $data['registration_plate'],
                 $data['fuel_type'],
                 $data['note'],
+                $data['is_default'],
             );
 
             if ($stmt->execute()) {

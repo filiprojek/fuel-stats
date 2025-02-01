@@ -3,8 +3,7 @@ class DashboardController extends Controller {
     public function index() {
         $vehicle = new Vehicle();
         $vehicles = $vehicle->getVehiclesByUser($_SESSION['user']['id']);
-
-        $default_car = $vehicle->getDefaultVehicle($_SESSION['user']['id']);
+        $default_car = $vehicle->getDefaultVehicle($_SESSION['user']['id']) ?? null;
 
         $refuel = new Refuel();
         $data = [
@@ -13,7 +12,7 @@ class DashboardController extends Controller {
             "mileage" => [],
             "liters" => []
         ];
-        $raw_data = $refuel->latest_data($default_car['id'], 5);
+        $raw_data = $default_car ? $refuel->latest_data($default_car['id'], 5) : [];
         foreach($raw_data as $one) {
             array_push($data['date'], date('d. m.', strtotime($one['created_at'])));
             array_push($data['price'], $one['price_per_liter']);
@@ -21,7 +20,8 @@ class DashboardController extends Controller {
             array_push($data['liters'], $one['liters']);
         }
 
-        $latest_record = $refuel->latest_one($_SESSION['user']['id'])[0];
+        $latest_data = $default_car ? $refuel->latest_one($default_car['id']) : [];
+        $latest_record = !empty($latest_data) ? $latest_data[0] : null;
 
         $this->view('dashboard/index', [
             'title' => 'Dashboard',

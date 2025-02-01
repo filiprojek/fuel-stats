@@ -60,7 +60,7 @@ class Refuel {
         }
     }
 
-    public function latest_one($user_id, $record_count = 1) {
+    public function latest_one($vehicle_id, $record_count = 1) {
         try {
             $stmt = $this->db->prepare("
                 SELECT 
@@ -70,15 +70,16 @@ class Refuel {
                     `r`.`price_per_liter`, 
                     `r`.`total_price`, 
                     `r`.`mileage`, 
+                    `r`.`note`, 
                     `r`.`created_at`
                 FROM `refueling_records` AS `r`
                 JOIN `vehicles` AS `v` ON `r`.`vehicle_id` = `v`.`id`
-                WHERE `r`.`user_id` = ?
+                WHERE `r`.`vehicle_id` = ?
                 ORDER BY `r`.`created_at` DESC
                 LIMIT ?;
             ");
 
-            $stmt->bind_param("ii", $user_id, $record_count);
+            $stmt->bind_param("ii", $vehicle_id, $record_count);
             if ($stmt->execute()) {
                 $result = $stmt->get_result();
                 $data = $result->fetch_all(MYSQLI_ASSOC);

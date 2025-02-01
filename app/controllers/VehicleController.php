@@ -30,17 +30,21 @@ class VehicleController extends Controller {
             }
 
             $vehicle = new Vehicle();
+            $default_vehicle = $vehicle->getDefaultVehicle($_SESSION['user']['id']);
+            $is_default = $default_vehicle ? 0 : 1;
+
             $result = $vehicle->create([
                 'name' => $name,
                 'registration_plate' => strtoupper($registration_plate),
                 'fuel_type' => $fuel_type,
                 'note' => $note,
                 'user_id' => $_SESSION['user']['id'],
+                'is_default' => $is_default
             ]);
 
 
             if ($result === true) {
-                $this->redirect('/vehicles');
+                $this->redirect('/');
             } else {
                 $this->view('vehicles/create', ['title' => 'Create vehicle', 'error' => $result, 'validationErrors' => []] );
             }
@@ -72,7 +76,7 @@ class VehicleController extends Controller {
             return;
         }
 
-        $this->view('vehicles/index', ['title' => 'Vehicles', 'vehicles' => $vehicles]);
+        header("Location: /vehicles");
     }
 
     public function setDefault() {
@@ -84,7 +88,7 @@ class VehicleController extends Controller {
             return;
         }
 
-        $this->view('vehicles/index', ['title' => 'Vehicles', 'vehicles' => $vehicles]);
+        header("Location: /");
     }
 
     public function api_get() {
