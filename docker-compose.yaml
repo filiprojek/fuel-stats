@@ -6,6 +6,8 @@ services:
       MARIADB_ROOT_PASSWORD: root
     ports:
       - 3306:3306
+    volumes:
+      - fuelstats_mariadb_data:/var/lib/mysql
     networks:
       - fuelstats-network
     profiles: ["prod", "dev"]
@@ -42,3 +44,6 @@ services:
 networks:
   fuelstats-network:
     driver: bridge
+
+volumes:
+  fuelstats_mariadb_data:
