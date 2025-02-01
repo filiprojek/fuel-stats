@@ -6,6 +6,8 @@ services:
       MARIADB_ROOT_PASSWORD: root
     ports:
       - 3306:3306
+    networks:
+      - fuelstats-network
     profiles: ["prod", "dev"]
 
   phpmyadmin:
@@ -15,6 +17,11 @@ services:
       - 8080:80
     environment:
       - PMA_ARBITRARY=1
+      - PMA_HOST=mariadb
+    depends_on:
+      - mariadb
+    networks:
+      - fuelstats-network
     profiles: ["dev"]
 
   fuelstats:
@@ -28,4 +35,10 @@ services:
     depends_on:
       - mariadb
     restart: on-failure:2
+    networks:
+      - fuelstats-network
     profiles: ["prod"]
+
+networks:
+  fuelstats-network:
+    driver: bridge
