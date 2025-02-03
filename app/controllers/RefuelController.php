@@ -46,6 +46,7 @@ class RefuelController extends Controller {
                     'validationErrors' => $validator->errors() ?: [],
                     'vehicles' => $vehicles,
                     'title' => 'New refuel record',
+                    'status' => '400'
                 ]);
                 return;
             }

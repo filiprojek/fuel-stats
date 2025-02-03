@@ -7,6 +7,11 @@ class View
         // Store the data 
         $this->data = $data;
 
+        // check for status code in data
+        if(isset($this->data['status'])){
+            http_response_code($this->data['status']);
+        }
+
         // Capture the view content
         ob_start();
         require_once views . $view . '.php';
